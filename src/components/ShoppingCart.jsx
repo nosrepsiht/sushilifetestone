@@ -198,6 +198,8 @@ const ShoppingCart = () => {
     useEffect(()=>{
         const fetchCart = async ()=>{
             try{
+
+                // console.log(new Date().toUTCString())
                 
                 // console.log(new Date(Date.now()))
                 // console.log((new Date(Date.now() - new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16))
@@ -321,14 +323,19 @@ const ShoppingCart = () => {
             return
         }
 
-        let orderDate = new Date(Date.now())
-        // orderDate.setHours(orderDate.getHours() + 5)
+        // let orderDate = new Date(Date.now())
+        let orderDate = new Date()
+        // orderDate.setUTCHours(orderDate.getUTCHours() + 5)
+        // console.log(orderDate.toUTCString())
 
         if (orderLater) {
             // console.log(document.getElementById("orderDateTime").value)
             orderDate = new Date(document.getElementById("orderDateTime").value)
-            let currentDateAndHalfAnHour = new Date(Date.now())
-            currentDateAndHalfAnHour.setMinutes(currentDateAndHalfAnHour.getMinutes() + 29)
+            // console.log("3: " + document.getElementById("orderDateTime").value)
+            // console.log("4: " + orderDate)
+            // let currentDateAndHalfAnHour = new Date(Date.now())
+            let currentDateAndHalfAnHour = new Date()
+            currentDateAndHalfAnHour.setUTCMinutes(currentDateAndHalfAnHour.getUTCMinutes() + 29)
             // let currentDate = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
             // console.log(orderDate)
             // console.log(currentDateAndHalfAnHour)
@@ -340,12 +347,21 @@ const ShoppingCart = () => {
                 return
             }
 
+            console.log("Hours: " + orderDate.getHours())
+
+            if (orderDate.getHours() < 12 || orderDate.getHours() > 19) {
+                toast(t('please_choose_time_between_12_and_19'))
+                return
+            }
+
             // orderDate.setHours(orderDate.getHours() + 5)
 
             // else {
             //     console.log("okay")
             // }
         }
+
+        orderDate.setUTCHours(orderDate.getUTCHours() + 5)
 
         setCreateMap([false])
 
@@ -364,19 +380,19 @@ const ShoppingCart = () => {
         let all_products = document.getElementsByClassName("product_quantity")
         for (let i = 0; i < shoppingCart.length; i++) {
             shoppingCart[i].product_quantity = all_products[i].innerHTML
-            console.log(all_products[i])
+            // console.log(all_products[i])
         }
 
-        console.log(shoppingCart)
+        // console.log(shoppingCart)
         // return;
 
         // const testdata = (await axios.post(GlobalVars.backend_server + "/order", [localStorage.getItem("username"), shoppingCart, localStorage.getItem("selectedLocationX"), localStorage.getItem("selectedLocationY"), shoppingCart2, orderLater, orderDate])).data
-        const testdata = (await axios.post(GlobalVars.backend_server + "/order", [localStorage.getItem("userPhone"), shoppingCart, localStorage.getItem("selectedLocationX"), localStorage.getItem("selectedLocationY"), shoppingCart2, orderLater, orderDate])).data
+        const testdata = (await axios.post(GlobalVars.backend_server + "/order", [localStorage.getItem("userPhone"), shoppingCart, localStorage.getItem("selectedLocationX"), localStorage.getItem("selectedLocationY"), shoppingCart2, orderLater, orderDate.toUTCString()])).data
 
-        console.log("testdata")
-        console.log(testdata)
+        // console.log("testdata")
+        // console.log(testdata)
 
-        console.log('mda')
+        // console.log('mda')
 
         localStorage.setItem("storedShoppingCart", JSON.stringify([]))
         // localStorage.removeItem("storedShoppingCart")

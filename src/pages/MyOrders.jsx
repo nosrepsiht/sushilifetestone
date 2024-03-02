@@ -89,7 +89,7 @@ const MyOrders = () => {
                                     <td>{order.order_id}</td>
                                     {/* <td>{order.status == null ? "null" : order.status}</td> */}
                                     <td>{order.cost.toLocaleString('en') + " " + t('sum')}</td>
-                                    <td>{new Date(order.datetime).toLocaleString([], {day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute:'2-digit'})}</td>
+                                    <td>{new Date(order.datetime).toUTCString([], {day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute:'2-digit'})}</td>
                                     <td><button className="more" onClick={()=>handleMore(order.order_id)}>{t('more')}</button></td>
                                 </tr>
                             ))}
