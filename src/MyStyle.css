@@ -843,6 +843,18 @@ table img{
     font-size: 20px;
 }
 
+.createMap3 {
+    height: 42px;
+    width: 60%;
+    background: rgb(255, 255, 255);
+    border-radius: 30px;
+    border: 2px solid black;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+}
+
 .bMapLeft, .bMapRight {
     height: 42px;
     width: 50%;

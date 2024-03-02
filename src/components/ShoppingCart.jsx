@@ -692,7 +692,7 @@ const ShoppingCart = () => {
                     <br></br>
                     
                     <div ref={bottomRef} style={{textAlign: "center"}}>
-                        <button className="createMap" onClick={()=>handleOrderCart(false)}>{t('order_now')}</button>
+                        <button className="createMap3" onClick={()=>handleOrderCart(false)}>{t('order_now')}</button>
                     </div>
                 </div>
                 :
