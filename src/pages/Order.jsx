@@ -86,7 +86,7 @@ const Order = () => {
                                         </tr>
                                         <tr style={{backgroundColor: "#46a7ce"}}>
                                             <td>{order.order_id}</td>
-                                            <td>{new Date(order.datetime).toLocaleString([], {day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute:'2-digit'})}</td>
+                                            <td>{new Date(order.datetime).toUTCString([], {day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute:'2-digit'})}</td>
                                             <td>{order.status}</td>
                                             <td>{(order.cost + 0).toLocaleString('en') + " " + t('sum')}</td>
                                         </tr>
