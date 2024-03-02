@@ -347,18 +347,23 @@ const ShoppingCart = () => {
                 return
             }
 
-            console.log("Hours: " + orderDate.getHours())
+            // console.log("Hours: " + orderDate.getHours())
 
-            if (orderDate.getHours() < 12 || orderDate.getHours() > 19) {
-                toast(t('please_choose_time_between_12_and_19'))
-                return
-            }
+            // if (orderDate.getHours() < 12 || orderDate.getHours() > 19) {
+            //     toast(t('please_choose_time_between_12_and_19'))
+            //     return
+            // }
 
             // orderDate.setHours(orderDate.getHours() + 5)
 
             // else {
             //     console.log("okay")
             // }
+        }
+
+        if (orderDate.getHours() < 12 || orderDate.getHours() > 19) {
+            toast(t('please_choose_time_between_12_and_19'))
+            return
         }
 
         orderDate.setUTCHours(orderDate.getUTCHours() + 5)
