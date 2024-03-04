@@ -61,7 +61,7 @@ const MyOrders = () => {
 
         else {
             return (
-                <div>
+                <div style={{display: "grid"}}>
                     {/* <div>{t('my_orders')}</div>
                     <button><Link to="/">{t('main')}</Link></button>
                     <button><Link to="/profile">{t('profile')}</Link></button>

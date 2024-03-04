@@ -263,7 +263,7 @@ td {
 } */
 
 .table-div {
-    width: 375px;
+    width: 100%;
     overflow: scroll;
 }
 

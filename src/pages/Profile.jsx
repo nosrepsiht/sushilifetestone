@@ -9,7 +9,7 @@ import GlobalVars from '../globalVariables/GlobalVars'
 const Profile = () => {
 
     const navigate = useNavigate()
-    const [account, setAccount] = useState([])
+    // const [account, setAccount] = useState([])
 
     const {t, i18n } = useTranslation()
     const locales = {
@@ -18,30 +18,30 @@ const Profile = () => {
         uz: {title: 'O\'zbek'}
     }
 
-    useEffect(()=>{
-        const fetchAccountData = async ()=>{
-            try{
-                const res = await axios.post(GlobalVars.backend_server + "/getAccount", [localStorage.getItem("username")])
-                setAccount(res.data)
+    // useEffect(()=>{
+    //     const fetchAccountData = async ()=>{
+    //         try{
+    //             const res = await axios.post(GlobalVars.backend_server + "/getAccount", [localStorage.getItem("username")])
+    //             setAccount(res.data)
 
-                // console.log(res.data[0].user_type)
-            }
+    //             // console.log(res.data[0].user_type)
+    //         }
 
-            catch(err){
-                console.log(err)
-            }
-        }
+    //         catch(err){
+    //             console.log(err)
+    //         }
+    //     }
 
-        if (localStorage.getItem("username") != null) {
-            fetchAccountData()
-        }
+    //     if (localStorage.getItem("username") != null) {
+    //         fetchAccountData()
+    //     }
 
-        // else {
-        //     console.log(localStorage.getItem("username"))
-        //     // console.log(localStorage.getItem("username"))
-        // }
+    //     // else {
+    //     //     console.log(localStorage.getItem("username"))
+    //     //     // console.log(localStorage.getItem("username"))
+    //     // }
             
-    },[]);
+    // },[]);
 
     const login = ()=>{
         navigate('/login')
@@ -75,20 +75,20 @@ const Profile = () => {
     //     )
     // }
 
-    if (account.length != 0 && account[0].user_type == "admin") {
-        return (
-            <div>
-                {t('profile')}
-                <div>
-                    <button className="logout" onClick={logout}>{t('logout')}</button>
-                </div>
+    // if (account.length != 0 && account[0].user_type == "admin") {
+    //     return (
+    //         <div>
+    //             {t('profile')}
+    //             <div>
+    //                 <button className="logout" onClick={logout}>{t('logout')}</button>
+    //             </div>
 
-                <div>
-                    <button><Link to="/monitor">{t('monitor')}</Link></button>
-                </div>
-            </div>
-        )
-    }
+    //             <div>
+    //                 <button><Link to="/monitor">{t('monitor')}</Link></button>
+    //             </div>
+    //         </div>
+    //     )
+    // }
 
     return (
         <div>
