@@ -11,7 +11,8 @@ export const Locales = () => {
     
     const locales = {
         en: {title: 'English'},
-        ru: {title: 'Русский'}
+        ru: {title: 'Русский'},
+        uz: {title: 'O\'zbek'}
     }
 
     return locales

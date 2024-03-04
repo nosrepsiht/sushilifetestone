@@ -7,7 +7,8 @@ const Footer = () => {
     const {t, i18n } = useTranslation()
     const locales = {
         en: {title: 'English'},
-        ru: {title: 'Русский'}
+        ru: {title: 'Русский'},
+        uz: {title: 'O\'zbek'}
     }
 
     useEffect(()=>{

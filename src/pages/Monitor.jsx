@@ -12,7 +12,8 @@ const Monitor = () => {
     const {t, i18n } = useTranslation()
     const locales = {
         en: {title: 'English'},
-        ru: {title: 'Русский'}
+        ru: {title: 'Русский'},
+        uz: {title: 'O\'zbek'}
     }
 
     // const url = `https://api.telegram.org/bot7025954997:AAEuUd8kvV8vd_KSVEqHTACVd2_zjnzbNm4/sendMessage`
