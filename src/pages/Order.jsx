@@ -184,7 +184,26 @@ const Order = () => {
                                 ))}
                             </div> */}
     
-                            <div className='table-div'>
+                            
+    
+                            {/* <table>
+                                <tr>
+                                    <td>
+                                        <td>Something1 Something1 Something1 Something1</td>
+                                        <td>Something1 Something1 Something1 Something1</td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <td>some2</td>
+                                        <td>some3</td>
+                                    </td>
+                                </tr>
+                            </table> */}
+                        </div>
+                    </div>
+
+                    <div className='table-div'>
                                 <table style={{textAlign: "center"}}>
                                     <tbody>
                                         <tr style={{backgroundColor: "#ff6600"}}>
@@ -302,23 +321,6 @@ const Order = () => {
                                     </tbody>
                                 </table>
                             </div>
-    
-                            {/* <table>
-                                <tr>
-                                    <td>
-                                        <td>Something1 Something1 Something1 Something1</td>
-                                        <td>Something1 Something1 Something1 Something1</td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <td>some2</td>
-                                        <td>some3</td>
-                                    </td>
-                                </tr>
-                            </table> */}
-                        </div>
-                    </div>
     
                     <MapDetails/>
                 </div>
