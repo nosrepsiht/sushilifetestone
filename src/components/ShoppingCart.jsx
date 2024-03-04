@@ -367,6 +367,11 @@ const ShoppingCart = () => {
             return
         }
 
+        if (orderDate.getDay() == 1) {
+            toast(t('monday_is_off'))
+            return
+        }
+
         orderDate.setUTCHours(orderDate.getUTCHours() + 5)
 
         setCreateMap([false])
