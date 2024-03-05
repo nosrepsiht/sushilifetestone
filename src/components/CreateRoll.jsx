@@ -157,7 +157,7 @@ const CreateRoll = () => {
     },[components]);
 
     const handleChangeQuantity = (_quantity, e)=>{
-        if (typeof parseInt(e.currentTarget.parentElement.children[1].value) == "number") {
+        if (e.currentTarget.parentElement.children[1].value > -1) {
             // createRoll.quantity = e.target.value;
             // console.log(createRoll)
             e.currentTarget.parentElement.children[1].value = parseInt(e.currentTarget.parentElement.children[1].value) + _quantity
@@ -177,9 +177,9 @@ const CreateRoll = () => {
     // }
     const handleAdd = async ()=>{
         try {
-            console.log(document.getElementById("input-quantity").value > 0)
-            console.log(parseInt(document.getElementById("input-quantity").value))
-            console.log(parseInt(document.getElementById("input-quantity").value) > 0)
+            // console.log(document.getElementById("input-quantity").value > 0)
+            // console.log(parseInt(document.getElementById("input-quantity").value))
+            // console.log(parseInt(document.getElementById("input-quantity").value) > 0)
             if (document.getElementById("input-quantity").value > 0) {
 
                 if (createRoll.cover == "") {
