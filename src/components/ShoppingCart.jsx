@@ -397,7 +397,7 @@ const ShoppingCart = () => {
         // console.log(shoppingCart)
         // return;
 
-        navigate('/myOrders')
+        // navigate('/myOrders')
 
         // const testdata = (await axios.post(GlobalVars.backend_server + "/order", [localStorage.getItem("username"), shoppingCart, localStorage.getItem("selectedLocationX"), localStorage.getItem("selectedLocationY"), shoppingCart2, orderLater, orderDate])).data
         const testdata = (await axios.post(GlobalVars.backend_server + "/order", [localStorage.getItem("userPhone"), shoppingCart, localStorage.getItem("selectedLocationX"), localStorage.getItem("selectedLocationY"), shoppingCart2, orderLater, orderDate.toUTCString()])).data
@@ -411,7 +411,7 @@ const ShoppingCart = () => {
         // localStorage.removeItem("storedShoppingCart")
         localStorage.removeItem("storedShoppingCart2")
 
-        // navigate('/myOrders')
+        navigate('/myOrders')
 
         // socket.emit("make_order", {message: "new order"})
         // socket.emit("send_message", {message: "hello"})
