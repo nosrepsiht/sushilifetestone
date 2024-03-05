@@ -157,11 +157,17 @@ const CreateRoll = () => {
     },[components]);
 
     const handleChangeQuantity = (_quantity, e)=>{
-        // createRoll.quantity = e.target.value;
-        // console.log(createRoll)
-        e.currentTarget.parentElement.children[1].value = parseInt(e.currentTarget.parentElement.children[1].value) + _quantity
+        if (typeof parseInt(e.currentTarget.parentElement.children[1].value) == "number") {
+            // createRoll.quantity = e.target.value;
+            // console.log(createRoll)
+            e.currentTarget.parentElement.children[1].value = parseInt(e.currentTarget.parentElement.children[1].value) + _quantity
 
-        if (e.currentTarget.parentElement.children[1].value < 1) {
+            if (e.currentTarget.parentElement.children[1].value < 1) {
+                e.currentTarget.parentElement.children[1].value = 1
+            }
+        }
+
+        else {
             e.currentTarget.parentElement.children[1].value = 1
         }
     }
@@ -171,108 +177,115 @@ const CreateRoll = () => {
     // }
     const handleAdd = async ()=>{
         try {
+            console.log(document.getElementById("input-quantity").value > 0)
+            console.log(parseInt(document.getElementById("input-quantity").value))
+            console.log(parseInt(document.getElementById("input-quantity").value) > 0)
+            if (document.getElementById("input-quantity").value > 0) {
 
-            if (document.getElementById("input-quantity").value <= 0) {
+                if (createRoll.cover == "") {
+                    // console.log("you need to choose cover")
+                    toast(t('please_choose_a_cover'))
+                    return
+                }
+    
+                if (stuffing_quantity < 40) {
+                    // console.log("you need to have at least 40 grams")
+                    toast(t('please_collect_at_least_40_grams_of_stuffing'))
+                    return
+                }
+    
+                
+                // createRoll.name = document.getElementById('input-name').value
+                // createRoll.quantity = document.getElementById('input-quantity').value
+                // console.log(createRoll)
+    
+                let testCost = 0
+    
+                // console.log(testCost)
+    
+                var all_covers = document.getElementsByClassName("cover")
+                for (let i = 0; i < all_covers.length; i++) {
+                    if (all_covers[i].checked) {
+                        testCost += parseInt(all_covers[i].value)
+                        break
+                    }
+                }
+    
+                // console.log(testCost)
+                
+                var all_additional_covers = document.getElementsByClassName("additional_cover")
+                for (let i = 0; i < all_additional_covers.length; i++) {
+                    if (all_additional_covers[i].checked) {
+                        testCost += parseInt(all_additional_covers[i].value.split(';')[1])
+                    }
+                }
+    
+                // console.log(testCost)
+    
+                var all_stuffings = document.getElementsByClassName("stuffing-cost")
+                for (let i = 0; i < all_stuffings.length; i++) {
+                    testCost += parseInt(all_stuffings[i].innerHTML)
+                    // console.log(all_stuffings[i].innerHTML)
+                    // if (all_stuffings[i].checked) {
+                        
+                    // }
+                }
+    
+                // console.log(testCost)
+    
+                var all_hats = document.getElementsByClassName("hat")
+                for (let i = 0; i < all_hats.length; i++) {
+                    if (all_hats[i].checked) {
+                        testCost += parseInt(all_hats[i].value.split(';')[1])
+                    }
+                }
+    
+                // console.log(testCost)
+    
+                var all_pourings = document.getElementsByClassName("pouring")
+                for (let i = 0; i < all_pourings.length; i++) {
+                    if (all_pourings[i].checked) {
+                        testCost += parseInt(all_pourings[i].value.split(';')[1])
+                    }
+                }
+    
+                // console.log("Cost: " + testCost)
+    
+                var testObject = []
+                var testObject2 = {
+                    product_id: 0,
+                    product_name: document.getElementById('input-name').value,
+                    product_quantity: document.getElementById('input-quantity').value,
+                    product_cost: testCost,
+                    product_cover: createRoll.cover,
+                    product_additional_cover: createRoll.additional_cover,
+                    product_stuffing: createRoll.stuffing,
+                    product_pouring: createRoll.pouring,
+                    product_hat: createRoll.hat
+                    }
+                // ShoppingCart has 1 or more items
+                if (JSON.parse(localStorage.getItem("storedShoppingCart")).length > 0) {
+                    testObject = JSON.parse(localStorage.getItem("storedShoppingCart"))
+                    testObject.push(testObject2)
+                }
+    
+                // ShoppingCart is clear
+                else {
+                    testObject = [testObject2]
+                }
+    
+                localStorage.setItem("storedShoppingCart", JSON.stringify(testObject))
+                navigate('/shoppingCart')
+    
+                // console.log(localStorage.getItem("storedShoppingCart").length)
+            }
+
+            else {
                 toast(t('quantity_must_be_greater_than_0'))
                 return
             }
 
-            if (createRoll.cover == "") {
-                // console.log("you need to choose cover")
-                toast(t('please_choose_a_cover'))
-                return
-            }
-
-            if (stuffing_quantity < 40) {
-                // console.log("you need to have at least 40 grams")
-                toast(t('please_collect_at_least_40_grams_of_stuffing'))
-                return
-            }
-
             
-            // createRoll.name = document.getElementById('input-name').value
-            // createRoll.quantity = document.getElementById('input-quantity').value
-            // console.log(createRoll)
-
-            let testCost = 0
-
-            // console.log(testCost)
-
-            var all_covers = document.getElementsByClassName("cover")
-            for (let i = 0; i < all_covers.length; i++) {
-                if (all_covers[i].checked) {
-                    testCost += parseInt(all_covers[i].value)
-                    break
-                }
-            }
-
-            // console.log(testCost)
-            
-            var all_additional_covers = document.getElementsByClassName("additional_cover")
-            for (let i = 0; i < all_additional_covers.length; i++) {
-                if (all_additional_covers[i].checked) {
-                    testCost += parseInt(all_additional_covers[i].value.split(';')[1])
-                }
-            }
-
-            // console.log(testCost)
-
-            var all_stuffings = document.getElementsByClassName("stuffing-cost")
-            for (let i = 0; i < all_stuffings.length; i++) {
-                testCost += parseInt(all_stuffings[i].innerHTML)
-                // console.log(all_stuffings[i].innerHTML)
-                // if (all_stuffings[i].checked) {
-                    
-                // }
-            }
-
-            // console.log(testCost)
-
-            var all_hats = document.getElementsByClassName("hat")
-            for (let i = 0; i < all_hats.length; i++) {
-                if (all_hats[i].checked) {
-                    testCost += parseInt(all_hats[i].value.split(';')[1])
-                }
-            }
-
-            // console.log(testCost)
-
-            var all_pourings = document.getElementsByClassName("pouring")
-            for (let i = 0; i < all_pourings.length; i++) {
-                if (all_pourings[i].checked) {
-                    testCost += parseInt(all_pourings[i].value.split(';')[1])
-                }
-            }
-
-            // console.log("Cost: " + testCost)
-
-            var testObject = []
-            var testObject2 = {
-                product_id: 0,
-                product_name: document.getElementById('input-name').value,
-                product_quantity: document.getElementById('input-quantity').value,
-                product_cost: testCost,
-                product_cover: createRoll.cover,
-                product_additional_cover: createRoll.additional_cover,
-                product_stuffing: createRoll.stuffing,
-                product_pouring: createRoll.pouring,
-                product_hat: createRoll.hat
-                }
-            // ShoppingCart has 1 or more items
-            if (JSON.parse(localStorage.getItem("storedShoppingCart")).length > 0) {
-                testObject = JSON.parse(localStorage.getItem("storedShoppingCart"))
-                testObject.push(testObject2)
-            }
-
-            // ShoppingCart is clear
-            else {
-                testObject = [testObject2]
-            }
-
-            localStorage.setItem("storedShoppingCart", JSON.stringify(testObject))
-            navigate('/shoppingCart')
-
-            // console.log(localStorage.getItem("storedShoppingCart").length)
 
         } catch (err) {
             console.log(err)
